@@ -5,6 +5,10 @@ import { hash } from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function seed() {
+  await prisma.account.deleteMany()
+  await prisma.token.deleteMany()
+  await prisma.member.deleteMany()
+  await prisma.project.deleteMany()
   await prisma.organization.deleteMany()
   await prisma.user.deleteMany()
 
