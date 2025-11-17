@@ -10,7 +10,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
     {
       schema: {
         tags: ['auth'],
-        summary: '',
+        summary: 'Request password reset token',
         body: z.object({
           email: z.email(),
         }),
