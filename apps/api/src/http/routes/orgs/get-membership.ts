@@ -33,12 +33,13 @@ export async function getMembership(app: FastifyInstance) {
       async (request) => {
         const { slug } = request.params
         const { membership } = await request.getUserMembership(slug)
+        const { id, organizationId, role } = membership
 
         return {
           membership: {
-            id: membership.id,
-            role: membership.role,
-            organizationId: membership.organizationId,
+            id,
+            role,
+            organizationId,
           },
         }
       },
