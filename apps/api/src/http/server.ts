@@ -13,6 +13,7 @@ import {
 
 import { errorHandler } from './error-handler'
 import { AuthRoutes } from './routes/auth/auth.routes'
+import { BillingRoutes } from './routes/billing/billing.routes'
 import { InvitesRoutes } from './routes/invites/invites.routes'
 import { MembersRoutes } from './routes/members/members.routes'
 import { OrgsRoutes } from './routes/orgs/orgs.routes'
@@ -61,6 +62,7 @@ OrgsRoutes(app)
 ProjectsRoutes(app)
 MembersRoutes(app)
 InvitesRoutes(app)
+BillingRoutes(app)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log(`HTTP server running!`)
