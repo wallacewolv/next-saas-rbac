@@ -1,18 +1,18 @@
 import { api } from './api-client'
 
-interface SigninWithPasswordRequest {
+interface SignInWithPasswordRequest {
   email: string
   password: string
 }
 
-interface SigninWithPasswordResponse {
+interface SignInWithPasswordResponse {
   token: string
 }
 
-export async function signinWithPassword({
+export async function signInWithPassword({
   email,
   password,
-}: SigninWithPasswordRequest) {
+}: SignInWithPasswordRequest) {
   const result = await api
     .post('sessions/password', {
       json: {
@@ -20,7 +20,7 @@ export async function signinWithPassword({
         password,
       },
     })
-    .json<SigninWithPasswordResponse>()
+    .json<SignInWithPasswordResponse>()
 
   return result
 }

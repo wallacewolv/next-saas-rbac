@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { signinWithGithub } from '@/http/sign-in-with-github'
+import { signInWithGithub } from '@/http/sign-in-with-github'
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  const { token } = await signinWithGithub({ code })
+  const { token } = await signInWithGithub({ code })
 
   const cookieStore = await cookies()
 
