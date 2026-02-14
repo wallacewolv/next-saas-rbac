@@ -1,7 +1,7 @@
 import { roleSchema } from '@saas/auth'
 import { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { z } from 'zod'
+import { uuid, z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 
@@ -24,6 +24,7 @@ export async function getMembership(app: FastifyInstance) {
               membership: z.object({
                 id: z.uuid(),
                 role: roleSchema,
+                userId: uuid(),
                 organizationId: z.string(),
               }),
             }),
@@ -33,12 +34,13 @@ export async function getMembership(app: FastifyInstance) {
       async (request) => {
         const { slug } = request.params
         const { membership } = await request.getUserMembership(slug)
-        const { id, organizationId, role } = membership
+        const { id, organizationId, role, userId } = membership
 
         return {
           membership: {
             id,
             role,
+            userId,
             organizationId,
           },
         }
