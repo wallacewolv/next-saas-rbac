@@ -4,6 +4,7 @@ import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -26,6 +27,10 @@ export function SignInForm() {
     },
   )
 
+  useEffect(() => {
+    console.log('Form state updated - errors:', errors)
+  }, [errors])
+
   return (
     <div className="space-y-4">
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -41,7 +46,12 @@ export function SignInForm() {
 
         <div className="space-y-1 ">
           <Label htmlFor="email">E-mail</Label>
-          <Input name="email" type="email" id="email" />
+          <Input
+            name="email"
+            type="email"
+            id="email"
+            aria-invalid={!!errors?.email}
+          />
 
           {errors?.email && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -52,7 +62,12 @@ export function SignInForm() {
 
         <div className="space-y-1 ">
           <Label htmlFor="password">Password</Label>
-          <Input name="password" type="password" id="password" />
+          <Input
+            name="password"
+            type="password"
+            id="password"
+            aria-invalid={!!errors?.password}
+          />
 
           <Link
             href="/auth/forgot-password"

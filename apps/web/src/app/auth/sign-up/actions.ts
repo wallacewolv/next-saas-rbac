@@ -4,17 +4,23 @@ import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 import { signUp } from '@/http/sign-up'
+import { parseZodErrors } from '@/lib/parse-zod-errors'
 
 const signUpSchema = z
   .object({
-    name: z.string().refine((value) => value.split(' ').length > 1, {
-      message: 'Please, enter your full name.',
-    }),
+    name: z
+      .string()
+      .min(1, { message: 'Name is required.' })
+      .refine((value) => value.split(' ').length > 1, {
+        message: 'Please, enter your full name.',
+      }),
     email: z.email({ message: 'Please, provide a valid email address.' }),
     password: z.string().min(6, {
       message: 'Password should have at least 6 characters.',
     }),
-    password_confirmation: z.string(),
+    password_confirmation: z
+      .string()
+      .min(1, { message: 'Password confirmation is required.' }),
   })
   .refine((data) => data.password === data.password_confirmation, {
     message: 'Password confirmation does not match.',
@@ -30,7 +36,9 @@ export async function signUpAction(data: FormData) {
   })
 
   if (!result.success) {
-    const errors = result.error.flatten().fieldErrors
+    const errors = parseZodErrors(result.error)
+
+    console.log('Validation errors:', errors)
 
     return { success: false, message: null, errors }
   }

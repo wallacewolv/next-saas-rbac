@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 import { z } from 'zod'
 
 import { signInWithPassword } from '@/http/sign-in-with-password'
+import { parseZodErrors } from '@/lib/parse-zod-errors'
 
 const signInSchema = z.object({
   email: z.email({ message: 'Please, provide a valid email address.' }),
@@ -18,7 +19,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
   })
 
   if (!result.success) {
-    const errors = result.error.flatten().fieldErrors
+    const errors = parseZodErrors(result.error)
 
     return { success: false, message: null, errors }
   }
