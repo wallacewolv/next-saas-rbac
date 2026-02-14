@@ -11,7 +11,7 @@ export async function Header() {
   const permissions = await ability()
 
   return (
-    <div className="mx-auto flex max-w-300 items-center justify-between">
+    <div className="mx-auto flex max-w-300 items-center justify-between border-b pb-2">
       <div className="flex items-center gap-3">
         <ShieldCheck className="size-6" />
 
