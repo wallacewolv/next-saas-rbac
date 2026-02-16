@@ -2,11 +2,12 @@ import { Header } from '@/components/header'
 
 export default async function Home() {
   return (
-    <div className="space-y-4 p-4">
-      <Header />
-      <main className="mx-auto w-full max-w-300 space-y-4">
-        <p className="text-sm text-muted-foreground">Select an organization.</p>
-      </main>
+    <div className="space-y-4 px-4">
+      <div className="pt-6">
+        <Header />
+      </div>
+
+      <p className="text-sm text-muted-foreground">Select an organization.</p>
     </div>
   )
 }

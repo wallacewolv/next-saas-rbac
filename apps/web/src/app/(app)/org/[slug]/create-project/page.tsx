@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 
 import { ability } from '@/auth/auth'
-import { Header } from '@/components/header'
 
 import { ProjectForm } from './project-form'
 
@@ -13,14 +12,10 @@ export default async function CreateProject() {
   }
 
   return (
-    <div className="p-4 space-y-4">
-      <Header />
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold">Create Project</h1>
 
-      <main className="mx-auto w-full max-w-300 space-y-4">
-        <h1 className="text-2xl font-bold">Create Project</h1>
-
-        <ProjectForm />
-      </main>
+      <ProjectForm />
     </div>
   )
 }
