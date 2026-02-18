@@ -33,7 +33,7 @@
     "tsx": "^4.20.6"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "dotenv -e ../../.env -- tsx prisma/seed.ts"
   },
   "eslintConfig": {
     "extends": "@saas/eslint-config/node"
