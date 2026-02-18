@@ -31,9 +31,7 @@ export function ProjectForm() {
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
           <AlertTitle>Save project failed!</AlertTitle>
-          <AlertDescription>
-            <p>{message}</p>
-          </AlertDescription>
+          <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
 
